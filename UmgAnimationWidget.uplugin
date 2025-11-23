@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "UmgAnimationWidget",
+	"Description": "Widget for UMG that allows to make and control animated icons (or images) from a png sprite sheet",
+	"Category": "Other",
+	"CreatedBy": "Ivan Smialko",
+	"CreatedByURL": "https://github.com/ivansmialko",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "UmgAnimationWidget",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
