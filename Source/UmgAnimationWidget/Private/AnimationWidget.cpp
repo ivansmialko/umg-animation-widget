@@ -27,9 +27,9 @@ void UAnimationWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime
 		return;
 
 	CurrentTime += InDeltaTime;
-	CurrentTime = FMath::Fmod(CurrentTime, GetAnimationDuration());
-	float NormalTime = FMath::Clamp(CurrentTime / GetAnimationDuration(), 0.f, 1.f);
-	SetTimeInput(NormalTime);
+	SetTimeInput(CurrentTime);
+
+	UE_LOG(LogTemp, Warning, TEXT("Time: %f"), CurrentTime / GetAnimationDuration());
 }
 
 void UAnimationWidget::AnimationPlay()
@@ -90,12 +90,15 @@ void UAnimationWidget::SetTimeInput(float InTime)
 	if (!AnimationMaterialInstanceDynamic)
 		return;
 
-	AnimationMaterialInstanceDynamic->SetScalarParameterValue(MaterialParameterTime, FMath::Clamp(InTime, 0.f, 1.f));
+	AnimationMaterialInstanceDynamic->SetScalarParameterValue(MaterialParameterTime, InTime);
 }
 
 int32 UAnimationWidget::GetCurrentFrame() const
 {
 	if (CurrentTime == 0.f)
+		return 0;
+
+	if (GetFramesAmount() == 0)
 		return 0;
 
 	return static_cast<int32>(FMath::FloorToInt(CurrentTime * static_cast<float>(FrameRate))) % GetFramesAmount();
