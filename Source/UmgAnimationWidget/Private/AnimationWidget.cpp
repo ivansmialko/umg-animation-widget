@@ -29,12 +29,24 @@ void UAnimationWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime
 	CurrentTime += InDeltaTime;
 	SetTimeInput(CurrentTime);
 
-	UE_LOG(LogTemp, Warning, TEXT("Time: %f"), CurrentTime / GetAnimationDuration());
+	if (IsOnce && CurrentTime >= GetAnimationDuration())
+	{
+		AnimationStop();
+		IsOnce = false;
+	}
 }
 
 void UAnimationWidget::AnimationPlay()
 {
 	IsPaused = false;
+}
+
+void UAnimationWidget::AnimationPlayOnce()
+{
+	IsOnce = true;
+	IsPaused = false;
+	SetFrame(StaticFrameNumber);
+	CurrentTime = 0.f;
 }
 
 void UAnimationWidget::AnimationPause()
