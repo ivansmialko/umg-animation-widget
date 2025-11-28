@@ -157,5 +157,5 @@ void UAnimationWidget::SetAnimationTexture(UTexture2D* InAnimationTexture)
 		return;
 
 	AnimationTexture = InAnimationTexture;
-	AnimationMaterialInstanceDynamic->SetTextureParameterValue(MaterialParameterAnimationTexture, InAnimationTexture);
+	AnimationMaterialInstanceDynamic->SetTextureParameterValue(MaterialParameterAnimationTexture, Cast<UTexture>(InAnimationTexture));
 }
