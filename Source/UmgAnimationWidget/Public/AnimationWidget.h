@@ -11,7 +11,7 @@ class UMaterialInstance;
 class UMaterialInstanceDynamic;
 
 UCLASS(Blueprintable, BlueprintType)
-class UAnimationWidget : public UUserWidget
+class UMGANIMATIONWIDGET_API UAnimationWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
@@ -37,6 +37,9 @@ private:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "UMG Animated Widget")
 	bool IsPaused{ false };
+
+	UPROPERTY(VisibleDefaultsOnly, Category = "UMG Animated Widget")
+	bool IsOnce{ false };
 
 	/* Set your animation sprite sheet */
 	UPROPERTY(EditAnywhere, Category = "UMG Animated Widget")
@@ -76,6 +79,9 @@ public:
 	/* Plays or resumes animation */
 	UFUNCTION(BlueprintCallable, Category = "UMG Animated Widget")
 	void AnimationPlay();
+
+	/* Plays animation once from static frame to end */
+	void AnimationPlayOnce();
 
 	/* Pauses animation (on current frame) */
 	UFUNCTION(BlueprintCallable, Category = "UMG Animated Widget")
